@@ -704,4 +704,10 @@
     <string name="preview_seekbar">Seekbar önizleme</string>
     <string name="preview_seekbar_desc">Arama çubuğunda önizleme küçük resmini etkinleştir</string>
     <string name="no_subtitles_loaded">Henüz altyazı yüklenmedi</string>
+    <string name="backup_path_title">Yedekleme klasörü konumu</string>
+    <string name="custom">Özel</string>
+    <string name="confirm_before_exiting_title">Çıkmadan önce onaylayın</string>
+    <string name="show">Göster</string>
+    <string name="confirm_before_exiting_desc">Uygulamadan çıkmadan önce iletişim kutusunu göster</string>
+    <string name="dont_show">Gizle</string>
 </resources>
