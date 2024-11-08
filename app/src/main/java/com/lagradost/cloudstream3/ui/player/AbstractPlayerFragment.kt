@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ScaleGestureDetector
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -636,7 +637,28 @@ abstract class AbstractPlayerFragment(
         if (showToast)
             showToast(resize.nameRes, Toast.LENGTH_SHORT)
     }
+ private fun setupPinchToZoom() {
+        scaleGestureDetector = ScaleGestureDetector(requireContext(), ScaleListener())
 
+        playerView.setOnTouchListener { _, event ->
+            scaleGestureDetector.onTouchEvent(event)
+            true
+        }
+    }
+
+    private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        override fun onScale(detector: ScaleGestureDetector): Boolean {
+            scaleFactor *= detector.scaleFactor
+            scaleFactor = scaleFactor.coerceIn(0.1f, 5.0f)
+            playerView.scaleX = scaleFactor
+            playerView.scaleY = scaleFactor
+
+            // Log the current scale percentage
+            val scalePercentage = (scaleFactor * 100).toInt()
+               showToast(scalePercentage.toString(), Toast.LENGTH_SHORT)
+            return true
+        }
+    }
     override fun onStop() {
         player.onStop()
         super.onStop()
