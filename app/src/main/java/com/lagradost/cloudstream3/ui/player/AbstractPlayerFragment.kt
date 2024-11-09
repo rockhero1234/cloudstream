@@ -638,9 +638,9 @@ abstract class AbstractPlayerFragment(
             showToast(resize.nameRes, Toast.LENGTH_SHORT)
     }
  private fun setupPinchToZoom() {
-        scaleGestureDetector = ScaleGestureDetector(requireContext(), ScaleListener())
+     var   scaleGestureDetector = ScaleGestureDetector(requireContext(), ScaleListener())
 
-        playerView.setOnTouchListener { _, event ->
+        playerView?.setOnTouchListener { _, event ->
             scaleGestureDetector.onTouchEvent(event)
             true
         }
@@ -648,10 +648,10 @@ abstract class AbstractPlayerFragment(
 
     private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
         override fun onScale(detector: ScaleGestureDetector): Boolean {
-            scaleFactor *= detector.scaleFactor
+           var scaleFactor *= detector.scaleFactor
             scaleFactor = scaleFactor.coerceIn(0.1f, 5.0f)
-            playerView.scaleX = scaleFactor
-            playerView.scaleY = scaleFactor
+            playerView?.scaleX = scaleFactor
+            playerView?.scaleY = scaleFactor
 
             // Log the current scale percentage
             val scalePercentage = (scaleFactor * 100).toInt()
