@@ -269,7 +269,7 @@ object SearchResultBuilder {
                         cardText.context?.getNameFull(card.name, card.episode, card.season)
                 }
             }
-
+    
             is AnimeSearchResponse -> {
                 val dubStatus = card.dubStatus
                 if (!dubStatus.isNullOrEmpty()) {
