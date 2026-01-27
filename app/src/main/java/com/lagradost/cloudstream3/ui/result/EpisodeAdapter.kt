@@ -287,7 +287,7 @@ class EpisodeAdapter(
                         if (isUpcoming) {
                             episodeProgress.isVisible = false
                             episodePlayIcon.isVisible = false
-                            episodeUpcomingIcon.isVisible = !posterVisible
+                            episodeUpcomingIcon.isVisible = true
                             episodeDate.setText(
                                 txt(
                                     R.string.episode_upcoming_format,

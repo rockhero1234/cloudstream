@@ -55,14 +55,7 @@
                 <!--                    android:src="@drawable/play_button"-->
                 <!--                    tools:visibility="invisible" />-->
 
-                <ImageView
-                    android:id="@+id/episode_upcoming_icon"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/hourglass_24"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+
 
                 <View
                     android:layout_width="match_parent"
@@ -88,7 +81,17 @@
                             android:layout_height="20dp"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/netflix_play" />
+                            android:src="@drawable/netflix_play"/>
+
+                        <ImageView
+                            android:id="@+id/episode_upcoming_icon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/hourglass_24"
+                            android:padding="3dp"
+                            android:visibility="gone"/>
 
                         <TextView
                             android:id="@+id/episode_index"
