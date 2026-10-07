@@ -214,7 +214,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                <include layout="@layout/fragment_result" android:id="@+id/fragment_result" />
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/result_swipe_refresh"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <include layout="@layout/fragment_result" android:id="@+id/fragment_result" />
+
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             </FrameLayout>
 

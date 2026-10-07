@@ -390,6 +390,19 @@ open class ResultFragmentPhone : BaseFragment<FragmentResultSwipeBinding>(
         }
     }
 
+    private fun refreshResult() {
+        val storedData = getStoredData() ?: return
+        binding?.resultSwipeRefresh?.isRefreshing = true
+        viewModel.load(
+            activity,
+            storedData.url,
+            storedData.apiName,
+            storedData.showFillers,
+            storedData.dubStatus,
+            storedData.start
+        )
+    }
+
     private fun reloadViewModel(forceReload: Boolean) {
         if (!viewModel.hasLoaded() || forceReload) {
             val storedData = getStoredData() ?: return
@@ -451,6 +464,10 @@ open class ResultFragmentPhone : BaseFragment<FragmentResultSwipeBinding>(
         playerHostView?.initialize()
 
         // ===== setup =====
+        binding.resultSwipeRefresh.setOnRefreshListener {
+            refreshResult()
+        }
+
         val storedData = getStoredData() ?: return
         activity?.window?.decorView?.clearFocus()
         activity?.loadCache()
@@ -1056,6 +1073,10 @@ open class ResultFragmentPhone : BaseFragment<FragmentResultSwipeBinding>(
                 resultFinishLoading.isVisible = data is Resource.Success
 
                 resultLoading.isVisible = data is Resource.Loading
+                binding.resultSwipeRefresh.isRefreshing = binding.resultSwipeRefresh.isRefreshing && data is Resource.Loading
+                if (data !is Resource.Loading) {
+                    binding.resultSwipeRefresh.isRefreshing = false
+                }
 
                 resultLoadingError.isVisible = data is Resource.Failure
                 resultErrorText.isVisible = data is Resource.Failure
