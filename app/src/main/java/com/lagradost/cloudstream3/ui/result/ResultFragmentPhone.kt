@@ -465,8 +465,8 @@ open class ResultFragmentPhone : BaseFragment<FragmentResultSwipeBinding>(
 
         // ===== setup =====
         binding.resultSwipeRefresh.setOnRefreshListener {
-            refreshResult()
-        }
+                refreshResult()
+            }
 
         val storedData = getStoredData() ?: return
         activity?.window?.decorView?.clearFocus()
@@ -1072,8 +1072,14 @@ open class ResultFragmentPhone : BaseFragment<FragmentResultSwipeBinding>(
                 binding.resultBookmarkFab.isVisible = data is Resource.Success
                 resultFinishLoading.isVisible = data is Resource.Success
 
-                resultLoading.isVisible = data is Resource.Loading
-                binding.resultSwipeRefresh.isRefreshing = binding.resultSwipeRefresh.isRefreshing && data is Resource.Loading
+                val isLoading = data is Resource.Loading
+                val isRefreshing = binding.resultSwipeRefresh.isRefreshing || isLoading
+                resultLoading.isVisible = isRefreshing
+                if (isRefreshing) {
+                    resultLoading.startShimmer()
+                } else {
+                    resultLoading.stopShimmer()
+                }
                 if (data !is Resource.Loading) {
                     binding.resultSwipeRefresh.isRefreshing = false
                 }
